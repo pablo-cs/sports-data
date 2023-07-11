@@ -19,11 +19,11 @@ class Favplayer(db.Model):
 
 
 #database class adds players who have been commented on along with their comments.... stores id, playername, username, and comment
-class CommentPlayer(db2.Model):
-    id = db2.Column(db2.Integer, primary_key=True, nullable = False)
-    playername = db2.Column(db2.string(30),unique=False, nullable = False)
-    username = db2.Column(db2.string(20), unique = True, nullable = False)
-    comment = db2.Column(db2.string(255), unique=False, nullable = False)
+class CommentPlayer(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable = False)
+    playername = db.Column(db2.string(30),unique=False, nullable = False)
+    username = db.Column(db2.string(20), unique = True, nullable = False)
+    comment = db.Column(db2.string(255), unique=False, nullable = False)
 
     #to check getting right info
     def __repr__(self):

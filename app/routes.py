@@ -87,7 +87,7 @@ def add_comment():
     user_name = request.form.get('user_name')
     user_comment = request.form.get('user_comment')
     player_id = request.form.get('player_id')
-    add_comment(player_id,user_name, user_comment)
+    add_comment(player_id,player_name, user_name, user_comment)
     player_comments = get_comments(player_data['id'])
     return render_template(
             'player.html', player=player_data,
