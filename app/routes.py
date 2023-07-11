@@ -31,10 +31,10 @@ def search():
     player_name = request.form.get('search')
     if user_name:
         headers = generate_headers()
-        player_data = get_player_data(user_name, headers)
+        player_data = get_player_data(player_name)
         if player_data:
             existing_player = Player.query.filter_by(
-                                name=player_data['name']).first()
+                                id=player_data['id']).first()
             player_exists = bool(existing_player)
             return render_template(
                     'results.html', player=player_data,
@@ -56,7 +56,7 @@ def add():
         if not existing_player:
             player = Player(
                 id=player_data['id'],
-                name=player_data['first_name']+player_data['last_name']
+                name=player_data['name']
             )
             add_to_db(player)
             
@@ -80,8 +80,5 @@ def view_fav():
     """
     Returns webpage of a set of users
     """
-    players = get_players(player_type)
-    if player_type == 'fav':
-        return render_template('favorites.html', players=players)
-    else:
-        return redirect(url_for('home'))
+    players = get_players()
+    return render_template('favorites.html', players=players)

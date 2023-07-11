@@ -10,6 +10,7 @@ def search_player(player_name):
    
     if response.status_code == 200:
         player_data = response.json()['data'][0]
+        player_data['name'] = player_data['first_name'] + " " + player_data['last_name']
         player_id = player_data['id']
         stats_url = f"https://www.balldontlie.io/api/v1/season_averages?player_ids[]={player_id}"
         response = requests.get(stats_url).json()
