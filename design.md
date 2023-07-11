@@ -11,6 +11,7 @@ You are encouraged to:
     - Routes
     - Helpers
     - Main
+    - Deployment
 - Process some data – could be from API, audio, images, video, etc.
 - Have a thoughtful testing plan and tests
 
