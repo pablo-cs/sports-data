@@ -15,6 +15,7 @@ app.route('/search', methods=['POST'])(search)
 app.route('/add', methods=['POST'])(add)
 app.route('/remove', methods=['POST'])(remove)
 app.route('/view_fav', methods=['GET', 'POST'])(view_fav)
+app.route('/add_comment', methods=['POST'])(add_comment)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
