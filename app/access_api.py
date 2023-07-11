@@ -20,13 +20,6 @@ def search_player(player_name):
         print("Error: Failed to retrieve player data.")
         return None
 
-# Example usage
-player_name = input("Enter player name: ")
-player_data = search_player("Lebron")
-
-if player_data is not None:
-    print(player_data)
-
 
 
 
