@@ -18,14 +18,6 @@ class Favplayer(db.Model):
 
 
 
-#creates table to use in routes
-with app.app_context():
-  db.create_all()
-
-#stuff for second database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///favplayer.db'
-db2 = SQLAlchemy(app)
-
 #database class adds players who have been commented on along with their comments.... stores id, playername, username, and comment
 class CommentPlayer(db2.Model):
     id = db2.Column(db2.Integer, primary_key=True, nullable = False)
@@ -38,7 +30,7 @@ class CommentPlayer(db2.Model):
         return f"User('{self.id}',{self.playername},{self.username},{self.comment})"
 
 with app.app_context():
-  db2.create_all()
+  db.create_all()
 
 
 
