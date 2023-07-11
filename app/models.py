@@ -1,27 +1,44 @@
 from flask_sqlalchemy import SQLAlchemy
 
 
-#stuff for databases
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///playerfavs.db'
+#stuff for database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///favplayer.db'
 db = SQLAlchemy(app)
 
-#I want to save the key information for a favorited player from a GET request that returns a dictionary
-#How will this databases always get the most current information for that player if its only storing a players data at that time of the request? 
-#Will clicking on favorited player just start the GET request, if so how is the GET request tied to favorited player?
-#possible database columns: player name, GET request or player name and then their stats
-#is the database being used so the front end can easily grab the information to display?
-class Player(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    #db.string illustrates max length
-    player = db.Column(db.String(120), unique=False, nullable=False) #how to address players with the same name? this can't be unique then?
-    request = db.Column(db.String(300), unique=True, nullable=False)
 
+#database class for favorited players...only stores id of player
+class Favplayer(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False) #playerid
+    #db.string illustrates max length
+    #playerName = db.Column(db.String(120), unique=False, nullable=False) #how to address players with the same name? 
+
+    #for checking right id 
     def __repr__(self):
-        return f"User('{self.player}', '{self.request}')"
+        return f"User('{self.id}')"
+
+
 
 #creates table to use in routes
 with app.app_context():
   db.create_all()
+
+#stuff for second database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///favplayer.db'
+db2 = SQLAlchemy(app)
+
+#database class adds players who have been commented on along with their comments.... stores id, playername, username, and comment
+class CommentPlayer(db2.Model):
+    id = db2.Column(db2.Integer, primary_key=True, nullable = False)
+    playername = db2.Column(db2.string(30),unique=False, nullable = False)
+    username = db2.Column(db2.string(20), unique = True, nullable = False)
+    comment = db2.Column(db2.string(255), unique=False, nullable = False)
+
+    #to check getting right info
+    def __repr__(self):
+        return f"User('{self.id}',{self.playername},{self.username},{self.comment})"
+
+with app.app_context():
+  db2.create_all()
 
 
 
