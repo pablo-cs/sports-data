@@ -48,15 +48,15 @@ def add_fav():
     """
     Adds player to Favplayer database
     """
-    player_id = request.form.get('player_id')
-    player_data = get_player_data(user_name) 
+    player_name = request.form.get('player_name')
+    player_data = get_player_data(player_name) 
     if player_data:
         existing_player = Favplayer.query.filter_by(
                             name=player_data['name']).first()
         if not existing_player:
             player = Favplayer(
                 id=player_data['id'], 
-                name=player_data['name']
+                playerName=player_data['name']
             )
             db.session.add(player) #adds data to database
             db.session.commit()
@@ -73,7 +73,7 @@ def remove():
     if player:
         db.session.delete(player)
         db.session.commit()
-        players = get_players()
+        players = Favplayer.query.all()
         return render_template('favorites.html', players=players)
     else:
         return redirect(url_for('home'))
@@ -94,18 +94,11 @@ def add_comment():
     comment = CommentPlayer(id=player_id, playername=xxxx,username=user_name,comment=user_comment) #need something for playername 
     db.session.add(comment)
     db.session.commit()
-    player_comments = get_comments(player_data['id']) #would this be a query with the id ?
+    player_comments = CommentPlayer.query.filter_by(id=player_id).all() #would this be a query with the id ?
     return render_template(
             'athlete.html', player=player_data,
             comments=player_comments
         )
 
-def get_comments(player_id):
-    comments = CommentPlayer.query.filter_by(id=player_id).all()
-    return comments
-
-def get_players():
-    favs = Favplayer.query.all()
-    return favs
 
 

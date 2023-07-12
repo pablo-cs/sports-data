@@ -20,7 +20,6 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-#app.routes go here
 app.route('/')(home)
 app.route('/search', methods=['POST'])(search)
 app.route('/add', methods=['POST'])(add_fav)

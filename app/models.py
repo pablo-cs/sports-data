@@ -10,7 +10,7 @@ class Favplayer(db.Model):
     __bind_key__ = 'favorite'
     id = db.Column(db.Integer, primary_key=True, nullable=False) #playerid
     #db.string illustrates max length
-    #playerName = db.Column(db.String(120), unique=False, nullable=False) #how to address players with the same name? 
+    playerName = db.Column(db.String(30), unique=False, nullable=False) #how to address players with the same name? 
 
     #for checking right id 
     def __repr__(self):
