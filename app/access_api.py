@@ -10,14 +10,12 @@ def get_player_data(player_name):
         player_id = player_data['id']
         stats_url = f"https://www.balldontlie.io/api/v1/season_averages?player_ids[]={player_id}"
         response = requests.get(stats_url).json()
-        stats_data = response['data'][0]
-        player_data.update(stats_data)
+        if len(response['data']) > 0:
+            stats_data = response['data'][0]
+            player_data.update(stats_data)
         return player_data
     else:
         print("Error: Failed to retrieve player data.")
         return None
-
-
-
 
 
