@@ -44,11 +44,10 @@ def search():
     return render_template('athlete.html', player=None)
 
 
-def add():
+def add_fav():
     """
     Adds player to Favplayer database
     """
-    user_name = request.form.get('add_user')
     player_id = request.form.get('player_id')
     player_data = get_player_data(user_name) 
     if player_data:
@@ -67,13 +66,14 @@ def add():
 
 def remove():
     """
-    Removes a player from the Player database
+    Removes a player from the Favplayer database
     """
     name_to_remove = request.form.get('removed_user')
     player = Favplayer.query.filter_by(name=name_to_remove).first()
     if player:
-        remove_from_db(player)
-        players = get_players('fav')
+        db.session.delete(player)
+        db.session.commit()
+        players = get_players()
         return render_template('favorites.html', players=players)
     else:
         return redirect(url_for('home'))
@@ -97,11 +97,15 @@ def add_comment():
     player_comments = get_comments(player_data['id']) #would this be a query with the id ?
     return render_template(
             'athlete.html', player=player_data,
-            comments=player_comments,
-            in_db=player_exists
+            comments=player_comments
         )
 
 def get_comments(player_id):
     comments = CommentPlayer.query.filter_by(id=player_id).all()
     return comments
+
+def get_players():
+    favs = Favplayer.query.all()
+    return favs
+
 
