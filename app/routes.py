@@ -46,19 +46,21 @@ def search():
 
 def add():
     """
-    Adds player to Player database
+    Adds player to Favplayer database
     """
     user_name = request.form.get('add_user')
-    player_data = get_player_data(user_name)
+    player_id = request.form.get('player_id')
+    player_data = get_player_data(user_name) 
     if player_data:
         existing_player = Player.query.filter_by(
                             name=player_data['name']).first()
         if not existing_player:
-            player = Player(
-                id=player_data['id'],
+            player = Favplayer(
+                id=player_data['id'], 
                 name=player_data['name']
             )
-            add_to_db(player)
+            db.session.add(player) #adds data to database
+            db.session.commit()
             
     return redirect(url_for('view_fav'))
 
@@ -81,6 +83,7 @@ def view_fav():
     Returns webpage of a set of users
     """
     players = get_players()
+    #something like Favplayer.query.all() but then we only want to display names  and this query would get all the ids
     return render_template('favorites.html', players=players)
 
 def add_comment():
@@ -88,7 +91,10 @@ def add_comment():
     user_comment = request.form.get('user_comment')
     player_id = request.form.get('player_id')
     add_comment(player_id,player_name, user_name, user_comment)
-    player_comments = get_comments(player_data['id'])
+    comment = CommentPlayer(id=player_id, playername=xxxx,username=user_name,comment=user_comment) #need something for playername 
+    db.session.add(comment)
+    db.session.commit()
+    player_comments = get_comments(player_data['id']) #would this be a query with the id ?
     return render_template(
             'player.html', player=player_data,
             comments=comments
