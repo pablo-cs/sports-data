@@ -6,7 +6,7 @@ from models import db, Favplayer, CommentPlayer
 from routes import (
     home,
     search,
-    add,
+    add_fav,
     remove,
     view_fav,
     add_comment
@@ -23,7 +23,7 @@ with app.app_context():
 #app.routes go here
 app.route('/')(home)
 app.route('/search', methods=['POST'])(search)
-app.route('/add', methods=['POST'])(add)
+app.route('/add', methods=['POST'])(add_fav)
 app.route('/remove', methods=['POST'])(remove)
 app.route('/view_fav', methods=['GET', 'POST'])(view_fav)
 app.route('/add_comment', methods=['POST'])(add_comment)

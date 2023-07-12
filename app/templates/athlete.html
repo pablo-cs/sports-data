@@ -4,6 +4,10 @@
         <h2>Player Not Found</h2>
   {% else %}
   <h1>Player Information </h1>
+  <form action="{{ url_for('add_fav') }}"" method="POST">
+      <input type="hidden" name="added_user" value="{{ streamer }}">
+      <button type="submit">Add to favorites</button>
+  </form>
   <table>
     <tr>
       <th>Name:</th>
@@ -122,15 +126,19 @@
     <div id="comments-list"></div>
 
     <h3>Add a Comment</h3>
-    <form id="comment-form">
+    <form id="comment-form" action="{{ url_for('add_comment') }}">
+      <input type="hidden" name="player_id" value="{{ player['id'] }}">
       <label for="name-input">Name:</label>
       <input type="text" id="name-input" required>
       <br>
       <label for="comment-input">Comment:</label>
       <textarea id="comment-input" rows="4" cols="50" required></textarea>
       <br>
-      <button type="button" onclick="addComment()">Submit Comment</button>
+      <button type="button">Submit Comment</button>
     </form>
+    {% for comment in comments %}
+      <h4>comment.comment</h4>
+    {% endfor %}
   </div>
   {% endif %}
 {% endblock content %}
