@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player Information </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Player Information </h1>
+  <table>
+    <tr>
+      <th>ID:</th>
+      <td id="id"></td>
+    </tr>
+    <tr>
+      <th>First Name:</th>
+      <td id="firstname"></td>
+    </tr>
+    <tr>
+      <th>Last Name:</th>
+      <td id="lastname"></td>
+    </tr>
+    <tr>
+      <th>Birth Date:</th>
+      <td id="birthdate"></td>
+    </tr>
+    <tr>
+      <th>Country:</th>
+      <td id="country"></td>
+    </tr>
+    <tr>
+      <th>NBA Start Year:</th>
+      <td id="nbastart"></td>
+    </tr>
+    <tr>
+      <th>Pro Years:</th>
+      <td id="proyears"></td>
+    </tr>
+    <tr>
+      <th>Height:</th>
+      <td id="height"></td>
+    </tr>
+    <tr>
+      <th>Weight:</th>
+      <td id="weight"></td>
+    </tr>
+    <tr>
+      <th>College:</th>
+      <td id="college"></td>
+    </tr>
+    <tr>
+      <th>Affiliation:</th>
+      <td id="affiliation"></td>
+    </tr>
+    <tr>
+      <th>Jersey Number:</th>
+      <td id="jersey"></td>
+    </tr>
+    <tr>
+      <th>Active:</th>
+      <td id="active"></td>
+    </tr>
+    <tr>
+      <th>Position:</th>
+      <td id="position"></td>
+    </tr>
+  </table>
+
+<div class="comments-container">
+    <h2>Comments</h2>
+    <div id="comments-list"></div>
+
+    <h3>Add a Comment</h3>
+    <form id="comment-form">
+      <label for="name-input">Name:</label>
+      <input type="text" id="name-input" required>
+      <br>
+      <label for="comment-input">Comment:</label>
+      <textarea id="comment-input" rows="4" cols="50" required></textarea>
+      <br>
+      <button type="button" onclick="addComment()">Submit Comment</button>
+    </form>
+  </div>
