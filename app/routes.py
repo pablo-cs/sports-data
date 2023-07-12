@@ -2,8 +2,8 @@ import git
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-from access_api import search_player
-
+from access_api import get_player_data
+from models import db, Favplayer, CommentPlayer
 def home():
     """
     Returns the homepage for the application
@@ -29,19 +29,19 @@ def search():
     Returns the webpage of a given player, if it exists
     """
     player_name = request.form.get('search')
-    if user_name:
+    if player_name:
         player_data = get_player_data(player_name)
         if player_data:
-            existing_player = Player.query.filter_by(
+            existing_player = Favplayer.query.filter_by(
                                 id=player_data['id']).first()
             player_exists = bool(existing_player)
             player_comments = get_comments(player_data['id'])
             return render_template(
-                    'player.html', player=player_data,
-                    comments=comments
+                    'athlete.html', player=player_data,
+                    comments=player_comments,
                     in_db=player_exists
                 )
-    return render_template('player.html', player=None)
+    return render_template('athlete.html', player=None)
 
 
 def add():
@@ -52,7 +52,7 @@ def add():
     player_id = request.form.get('player_id')
     player_data = get_player_data(user_name) 
     if player_data:
-        existing_player = Player.query.filter_by(
+        existing_player = Favplayer.query.filter_by(
                             name=player_data['name']).first()
         if not existing_player:
             player = Favplayer(
@@ -70,7 +70,7 @@ def remove():
     Removes a player from the Player database
     """
     name_to_remove = request.form.get('removed_user')
-    player = Player.query.filter_by(name=name_to_remove).first()
+    player = Favplayer.query.filter_by(name=name_to_remove).first()
     if player:
         remove_from_db(player)
         players = get_players('fav')
@@ -96,8 +96,12 @@ def add_comment():
     db.session.commit()
     player_comments = get_comments(player_data['id']) #would this be a query with the id ?
     return render_template(
-            'player.html', player=player_data,
-            comments=comments
+            'athlete.html', player=player_data,
+            comments=player_comments,
             in_db=player_exists
         )
+
+def get_comments(player_id):
+    comments = CommentPlayer.query.filter_by(id=player_id).all()
+    return comments
 

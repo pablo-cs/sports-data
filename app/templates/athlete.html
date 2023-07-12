@@ -1,84 +1,114 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Player Information </title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-  </style>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
   <h1>Player Information </h1>
   <table>
     <tr>
-      <th>ID:</th>
-      <td id="id"></td>
+      <th>Name:</th>
+      <td id="name">{{ player['name'] }}</td>
     </tr>
     <tr>
-      <th>First Name:</th>
-      <td id="firstname"></td>
+      <th>Team:</th>
+      <td id="proyears">{{ player['team']['full_name']}}</td>
     </tr>
     <tr>
-      <th>Last Name:</th>
-      <td id="lastname"></td>
+      <th>Games Played:</th>
+      <td id="proyears">{{ player['games_played']}}</td>
     </tr>
     <tr>
-      <th>Birth Date:</th>
-      <td id="birthdate"></td>
+      <th>Height (feet):</th>
+      <td id="height">{{ player['height_feet'] }}</td>
     </tr>
     <tr>
-      <th>Country:</th>
-      <td id="country"></td>
+      <th>Height (inches):</th>
+      <td id="height">{{ player['height_inches'] }}</td>
     </tr>
     <tr>
-      <th>NBA Start Year:</th>
-      <td id="nbastart"></td>
+      <th>Weight (pounds):</th>
+      <td id="weight">{{ player['weight_pounds'] }}</td>
     </tr>
     <tr>
-      <th>Pro Years:</th>
-      <td id="proyears"></td>
-    </tr>
-    <tr>
-      <th>Height:</th>
-      <td id="height"></td>
-    </tr>
-    <tr>
-      <th>Weight:</th>
-      <td id="weight"></td>
-    </tr>
-    <tr>
-      <th>College:</th>
-      <td id="college"></td>
-    </tr>
-    <tr>
-      <th>Affiliation:</th>
-      <td id="affiliation"></td>
-    </tr>
-    <tr>
-      <th>Jersey Number:</th>
-      <td id="jersey"></td>
-    </tr>
-    <tr>
-      <th>Active:</th>
-      <td id="active"></td>
+      <th>Season:</th>
+      <td id="college">{{ player['season'] }}</td>
     </tr>
     <tr>
       <th>Position:</th>
-      <td id="position"></td>
+      <td id="position">{{ player['position'] }}</td>
+    </tr>
+    <tr>
+      <th>Minutes:</th>
+      <td id="minutes">{{ player['min'] }}</td>
+    </tr>
+    <tr>
+      <th>Field Goals Made:</th>
+      <td id="fgm">{{ player['fgm'] }}</td>
+    </tr>
+    <tr>
+      <th>Field Goals Attempted:</th>
+      <td id="fga">{{ player['fga'] }}</td>
+    </tr>
+    <tr>
+      <th>Three-Point Field Goals Made:</th>
+      <td id="fg3m">{{ player['fg3m'] }}</td>
+    </tr>
+    <tr>
+      <th>Three-Point Field Goals Attempted:</th>
+      <td id="fg3a">{{ player['fg3a'] }}</td>
+    </tr>
+    <tr>
+      <th>Free Throws Made:</th>
+      <td id="ftm">{{ player['ftm'] }}</td>
+    </tr>
+    <tr>
+      <th>Free Throws Attempted:</th>
+      <td id="fta">{{ player['fta'] }}</td>
+    </tr>
+    <tr>
+      <th>Offensive Rebounds:</th>
+      <td id="oreb">{{ player['oreb'] }}</td>
+    </tr>
+    <tr>
+      <th>Defensive Rebounds:</th>
+      <td id="dreb">{{ player['dreb'] }}</td>
+    </tr>
+    <tr>
+      <th>Total Rebounds:</th>
+      <td id="reb">{{ player['reb'] }}</td>
+    </tr>
+    <tr>
+      <th>Assists:</th>
+      <td id="ast">{{ player['ast'] }}</td>
+    </tr>
+    <tr>
+      <th>Steals:</th>
+      <td id="stl">{{ player['stl'] }}</td>
+    </tr>
+    <tr>
+      <th>Blocks:</th>
+      <td id="blk">{{ player['blk'] }}</td>
+    </tr>
+    <tr>
+      <th>Turnovers:</th>
+      <td id="turnover">{{ player['turnover'] }}</td>
+    </tr>
+    <tr>
+      <th>Personal Fouls:</th>
+      <td id="pf">{{ player['pf'] }}</td>
+    </tr>
+    <tr>
+      <th>Points:</th>
+      <td id="pts">{{ player['pts'] }}</td>
+    </tr>
+    <tr>
+      <th>Field Goal Percentage:</th>
+      <td id="fg_pct">{{ player['fg_pct'] }}</td>
+    </tr>
+    <tr>
+      <th>Three-Point Percentage:</th>
+      <td id="fg3_pct">{{ player['fg3_pct'] }}</td>
+    </tr>
+    <tr>
+      <th>Free Throw Percentage:</th>
+      <td id="ft_pct">{{ player['ft_pct'] }}</td>
     </tr>
   </table>
 
@@ -97,3 +127,4 @@
       <button type="button" onclick="addComment()">Submit Comment</button>
     </form>
   </div>
+{% endblock content %}

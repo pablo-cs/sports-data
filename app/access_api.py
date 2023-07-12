@@ -1,10 +1,6 @@
 import requests
-import http.client
 
-
-import requests
-
-def search_player(player_name):
+def get_player_data(player_name):
     player_url = f"https://www.balldontlie.io/api/v1/players?search={player_name}"
     response = requests.get(player_url)
    

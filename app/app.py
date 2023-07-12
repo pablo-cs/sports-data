@@ -1,9 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-#import models and routes
+from config import Config
+from access_api import get_player_data
+from models import db, Favplayer, CommentPlayer
+from routes import (
+    home,
+    search,
+    add,
+    remove,
+    view_fav,
+    add_comment
+)
 
 app = Flask(__name__)
 proxied = FlaskBehindProxy(app)
+app.config.from_object(Config)
 db.init_app(app)
 
 with app.app_context():
