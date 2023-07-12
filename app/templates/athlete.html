@@ -122,23 +122,26 @@
   </table>
 
 <div class="comments-container">
-    <h2>Comments</h2>
-    <div id="comments-list"></div>
+  <h2>Comments</h2>
+  <div id="comments-list"></div>
 
-    <h3>Add a Comment</h3>
-    <form id="comment-form" action="{{ url_for('add_comment') }}">
-      <input type="hidden" name="player_id" value="{{ player['id'] }}">
-      <label for="name-input">Name:</label>
-      <input type="text" id="name-input" required>
-      <br>
-      <label for="comment-input">Comment:</label>
-      <textarea id="comment-input" rows="4" cols="50" required></textarea>
-      <br>
-      <button type="button">Submit Comment</button>
-    </form>
-    {% for comment in comments %}
-      <h4>comment.comment</h4>
-    {% endfor %}
-  </div>
+  <h3>Add a Comment</h3>
+  <form id="comment-form" action="{{ url_for('add_comment') }}" method="POST">
+    {{ form.csrf_token }}
+    <input type="hidden" name="player_id" value="{{ player['id'] }}">
+    <input type="hidden" name="player_name" value="{{ player['name'] }}">
+    <label for="name-input">Name:</label>
+    <input type="text" id="name-input" name="user_name" required>
+    <br>
+    <label for="comment-input">Comment:</label>
+    <textarea id="comment-input" name="user_comment" rows="4" cols="50" required></textarea>
+    <br>
+    <button type="submit">Submit Comment</button>
+  </form>
+  {% for comment in comments %}
+    <h4>{{ comment.comment }}</h4>
+    <p>{{ comment.username }}</p>
+  {% endfor %}
+</div>
   {% endif %}
 {% endblock content %}

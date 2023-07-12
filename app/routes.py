@@ -35,13 +35,15 @@ def search():
         player_data = get_player_data(player_name)
         if player_data:
             existing_player = Favplayer.query.filter_by(
-                                id=player_data['id']).first()
+                                player_id=player_data['id']).first()
             player_exists = bool(existing_player)
-            player_comments = get_comments(player_data['id'])
+            form = CommentForm()
+            player_comments = CommentPlayer.query.filter_by(player_id=player_data['id']).all()
             return render_template(
                     'athlete.html', player=player_data,
                     comments=player_comments,
-                    in_db=player_exists
+                    form=form
+                    #in_db=player_exists
                 )
     return render_template('athlete.html', player=None)
 
@@ -57,7 +59,7 @@ def add_fav():
                             name=player_data['name']).first()
         if not existing_player:
             player = Favplayer(
-                id=player_data['id'], 
+                player_id=player_data['id'], 
                 playerName=player_data['name']
             )
             db.session.add(player) #adds data to database
@@ -92,15 +94,18 @@ def add_comment():
     user_name = request.form.get('user_name')
     user_comment = request.form.get('user_comment')
     player_id = request.form.get('player_id')
-    add_comment(player_id,player_name, user_name, user_comment)
-    comment = CommentPlayer(id=player_id, playername=xxxx,username=user_name,comment=user_comment) #need something for playername 
+    player_name = request.form.get('player_name')
+    player_data = get_player_data(player_name)
+    comment = CommentPlayer(player_id=player_id, playername=player_name, username=user_name, comment=user_comment)
     db.session.add(comment)
     db.session.commit()
-    player_comments = CommentPlayer.query.filter_by(id=player_id).all() #would this be a query with the id ?
+    form = CommentForm()
+    player_comments = CommentPlayer.query.filter_by(player_id=player_id).all()
     return render_template(
-            'athlete.html', player=player_data,
-            comments=player_comments
-        )
+        'athlete.html', player=player_data,
+        comments=player_comments,
+        form=form
+    )
 
 
 
