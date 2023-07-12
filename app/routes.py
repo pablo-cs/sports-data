@@ -4,6 +4,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
 from access_api import get_player_data
 from models import db, Favplayer, CommentPlayer
+from comments import CommentForm
+
 def home():
     """
     Returns the homepage for the application
