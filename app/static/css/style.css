@@ -1,38 +1,82 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+/* style.css */
+
+/* Color palette */
+:root {
+  --crimson: #d62839ff;
+  --rose-red: #ba324fff;
+  --lapis-lazuli: #175676ff;
+  --pacific-cyan: #4ba3c3ff;
+  --columbia-blue: #cce6f4ff;
 }
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: var(--lapis-lazuli);
+}
+
 h1 {
-    text-align: center;
+  text-align: center;
+  color: var(--crimson);
 }
 
 .player-image {
   width: 300px;
   height: auto;
+  border-radius: 5px;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--columbia-blue)
 }
+
 th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--lapis-lazuli);
 }
 
 .action-profile {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
+  background-color: var(--pacific-cyan);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
 }
 
-.comment-view{
-    border-color: black;
-    border-style: dotted;
+.comment-view {
+  border-color: var(--columbia-blue);
+  border-style: dotted;
+}
+
+/* Additional styling using color palette */
+h2 {
+  color: var(--rose-red);
+}
+
+.comments-container {
+  background-color: var(--columbia-blue);
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#comments-list {
+  margin-bottom: 10px;
+}
+
+#comment-form button[type="submit"] {
+  background-color: var(--crimson);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
 }
