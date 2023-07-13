@@ -9,6 +9,8 @@ h1 {
 .player-image {
   width: 300px;
   height: auto;
+  border-color: black
+  border-style: solid;
 }
 
 table {
