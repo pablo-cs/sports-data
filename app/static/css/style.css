@@ -22,9 +22,9 @@ h1 {
 }
 
 .player-image {
-  width: 300px;
-  height: auto;
   border-radius: 5px;
+  border-color: black
+  border-style: solid;
 }
 
 table {

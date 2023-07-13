@@ -86,7 +86,6 @@ def view_fav():
     Returns webpage of a set of users
     """
     players = Favplayer.query.all()
-    #something like Favplayer.query.all() but then we only want to display names  and this query would get all the ids
     return render_template('favorites.html', players=players)
 
 def add_comment():
