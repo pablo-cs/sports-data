@@ -53,82 +53,82 @@
       <th>Position:</th>
       <td id="position">{{ player['position'] }}</td>
     </tr>
-    {% if 'min' in player %}
+    {% if player['stats'] %}
     <tr>
       <th>Minutes:</th>
-      <td id="minutes">{{ player['min'] }}</td>
+      <td id="minutes">{{ player['stats']['min'] }}</td>
     </tr>
     <tr>
       <th>Field Goals Made:</th>
-      <td id="fgm">{{ player['fgm'] }}</td>
+      <td id="fgm">{{ player['stats']['fgm'] }}</td>
     </tr>
     <tr>
       <th>Field Goals Attempted:</th>
-      <td id="fga">{{ player['fga'] }}</td>
+      <td id="fga">{{ player['stats']['fga'] }}</td>
     </tr>
     <tr>
       <th>Three-Point Field Goals Made:</th>
-      <td id="fg3m">{{ player['fg3m'] }}</td>
+      <td id="fg3m">{{ player['stats']['fg3m'] }}</td>
     </tr>
     <tr>
       <th>Three-Point Field Goals Attempted:</th>
-      <td id="fg3a">{{ player['fg3a'] }}</td>
+      <td id="fg3a">{{ player['stats']['fg3a'] }}</td>
     </tr>
     <tr>
       <th>Free Throws Made:</th>
-      <td id="ftm">{{ player['ftm'] }}</td>
+      <td id="ftm">{{ player['stats']['ftm'] }}</td>
     </tr>
     <tr>
       <th>Free Throws Attempted:</th>
-      <td id="fta">{{ player['fta'] }}</td>
+      <td id="fta">{{ player['stats']['fta'] }}</td>
     </tr>
     <tr>
       <th>Offensive Rebounds:</th>
-      <td id="oreb">{{ player['oreb'] }}</td>
+      <td id="oreb">{{ player['stats']['oreb'] }}</td>
     </tr>
     <tr>
       <th>Defensive Rebounds:</th>
-      <td id="dreb">{{ player['dreb'] }}</td>
+      <td id="dreb">{{ player['stats']['dreb'] }}</td>
     </tr>
     <tr>
       <th>Total Rebounds:</th>
-      <td id="reb">{{ player['reb'] }}</td>
+      <td id="reb">{{ player['stats']['reb'] }}</td>
     </tr>
     <tr>
       <th>Assists:</th>
-      <td id="ast">{{ player['ast'] }}</td>
+      <td id="ast">{{ player['stats']['ast'] }}</td>
     </tr>
     <tr>
       <th>Steals:</th>
-      <td id="stl">{{ player['stl'] }}</td>
+      <td id="stl">{{ player['stats']['stl'] }}</td>
     </tr>
     <tr>
       <th>Blocks:</th>
-      <td id="blk">{{ player['blk'] }}</td>
+      <td id="blk">{{ player['stats']['blk'] }}</td>
     </tr>
     <tr>
       <th>Turnovers:</th>
-      <td id="turnover">{{ player['turnover'] }}</td>
+      <td id="turnover">{{ player['stats']['turnover'] }}</td>
     </tr>
     <tr>
       <th>Personal Fouls:</th>
-      <td id="pf">{{ player['pf'] }}</td>
+      <td id="pf">{{ player['stats']['pf'] }}</td>
     </tr>
     <tr>
       <th>Points:</th>
-      <td id="pts">{{ player['pts'] }}</td>
+      <td id="pts">{{ player['stats']['pts'] }}</td>
     </tr>
     <tr>
       <th>Field Goal Percentage:</th>
-      <td id="fg_pct">{{ player['fg_pct'] }}</td>
+      <td id="fg_pct">{{ player['stats']['fg_pct'] }}</td>
     </tr>
     <tr>
       <th>Three-Point Percentage:</th>
-      <td id="fg3_pct">{{ player['fg3_pct'] }}</td>
+      <td id="fg3_pct">{{ player['stats']['fg3_pct'] }}</td>
     </tr>
     <tr>
       <th>Free Throw Percentage:</th>
-      <td id="ft_pct">{{ player['ft_pct'] }}</td>
+      <td id="ft_pct">{{ player['stats']['ft_pct'] }}</td>
     </tr>
     {% endif %}
   </table>

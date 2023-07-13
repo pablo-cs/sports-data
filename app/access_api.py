@@ -14,7 +14,9 @@ def get_player_data(player_name):
     response = requests.get(stats_url).json()
     if len(response['data']) > 0:
         stats_data = response['data'][0]
-        player_data.update(stats_data)
+        player_data['stats'] = stats_data
+    else:
+        player_data['stats'] = None
     return player_data
 
 
