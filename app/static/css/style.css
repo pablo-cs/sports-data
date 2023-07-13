@@ -5,6 +5,12 @@ body {
 h1 {
     text-align: center;
 }
+
+.player-image {
+  width: 300px;
+  height: auto;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

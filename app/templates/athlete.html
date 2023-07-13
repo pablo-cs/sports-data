@@ -15,6 +15,11 @@
         <button type="submit">Remove from favorites</button>
     </form>
   {% endif %}
+    {% if player['image_url'] %}
+    <img class="player-image" src="{{ player['image_url'] }}" alt="Player Image">
+  {% else %}
+    <p>No player image available.</p>
+  {% endif %}
   <table>
     <tr>
       <th>Name:</th>
