@@ -42,8 +42,8 @@ def search():
             return render_template(
                     'athlete.html', player=player_data,
                     comments=player_comments,
-                    form=form
-                    #in_db=player_exists
+                    form=form,
+                    in_db=player_exists
                 )
     return render_template('athlete.html', player=None)
 
@@ -73,15 +73,13 @@ def remove():
     """
     Removes a player from the Favplayer database
     """
-    name_to_remove = request.form.get('removed_user')
-    player = Favplayer.query.filter_by(player_name=name_to_remove).first()
+    id_to_remove = request.form.get('removed_player')
+    player = Favplayer.query.filter_by(player_id=id_to_remove).first()
     if player:
         db.session.delete(player)
         db.session.commit()
-        players = Favplayer.query.all()
-        return render_template('favorites.html', players=players)
-    else:
-        return redirect(url_for('home'))
+    return redirect(url_for('view_fav'))
+
 
 def view_fav():
     """

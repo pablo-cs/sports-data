@@ -11,10 +11,18 @@
     <tr>
       <th id="name">{{ player.player_name }}</th>
       <th id="team">{{ player.team_name }} </th>
-      <td><form action="{{ url_for('search') }}" method="POST">
-                <input type="hidden" name="search" value="{{ player.player_name }}">
-                <button class="view-profile" type="submit">View Profile</button>
+      <td>
+        <form action="{{ url_for('search') }}" method="POST">
+          <input type="hidden" name="search" value="{{ player.player_name }}">
+          <button class="action-profile" type="submit">View Profile</button>
+        </form>
+        <br>
+        <form action="{{ url_for('remove') }}" method="POST">
+          <input type="hidden" name="removed_player" value="{{ player.player_id }}">
+          <button class="action-profile" type="submit">Remove</button>
+        </form>
       </td>
+
     {% endfor %}
   </table>
 {% endblock content %}
