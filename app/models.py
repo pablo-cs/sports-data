@@ -10,8 +10,8 @@ class Favplayer(db.Model):
     __bind_key__ = 'favorite'
     player_id = db.Column(db.Integer, primary_key=True, nullable=False) #playerid
     #db.string illustrates max length
-    playerName = db.Column(db.String(30), unique=False, nullable=False) #how to address players with the same name? 
-
+    player_name = db.Column(db.String(30), unique=False, nullable=False) #how to address players with the same name? 
+    team_name = db.Column(db.String(30), unique=False, nullable=False)
     #for checking right id 
     def __repr__(self):
         return f"Player('{self.player_id}')"
@@ -23,8 +23,8 @@ class CommentPlayer(db.Model):
     __bind_key__ = 'comment'
     id = db.Column(db.Integer, primary_key=True)
     player_id = db.Column(db.Integer, unique=False, nullable = False)
-    playername = db.Column(db.String(30),unique=False, nullable = False)
-    username = db.Column(db.String(20), unique = False, nullable = False)
+    player_name = db.Column(db.String(30),unique=False, nullable = False)
+    user_name = db.Column(db.String(20), unique = False, nullable = False)
     comment = db.Column(db.String(255), unique=False, nullable = False)
 
     #to check getting right info

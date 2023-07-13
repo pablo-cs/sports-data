@@ -52,15 +52,16 @@ def add_fav():
     """
     Adds player to Favplayer database
     """
-    player_name = request.form.get('player_name')
+    player_name = request.form.get('added_player')
     player_data = get_player_data(player_name) 
     if player_data:
         existing_player = Favplayer.query.filter_by(
-                            name=player_data['name']).first()
+                            player_name=player_data['name']).first()
         if not existing_player:
             player = Favplayer(
                 player_id=player_data['id'], 
-                playerName=player_data['name']
+                player_name=player_data['name'],
+                team_name=player_data['team']['full_name']
             )
             db.session.add(player) #adds data to database
             db.session.commit()
@@ -73,7 +74,7 @@ def remove():
     Removes a player from the Favplayer database
     """
     name_to_remove = request.form.get('removed_user')
-    player = Favplayer.query.filter_by(name=name_to_remove).first()
+    player = Favplayer.query.filter_by(player_name=name_to_remove).first()
     if player:
         db.session.delete(player)
         db.session.commit()
@@ -86,7 +87,7 @@ def view_fav():
     """
     Returns webpage of a set of users
     """
-    players = get_players()
+    players = Favplayer.query.all()
     #something like Favplayer.query.all() but then we only want to display names  and this query would get all the ids
     return render_template('favorites.html', players=players)
 
@@ -96,7 +97,7 @@ def add_comment():
     player_id = request.form.get('player_id')
     player_name = request.form.get('player_name')
     player_data = get_player_data(player_name)
-    comment = CommentPlayer(player_id=player_id, playername=player_name, username=user_name, comment=user_comment)
+    comment = CommentPlayer(player_id=player_id, player_name=player_name, user_name=user_name, comment=user_comment)
     db.session.add(comment)
     db.session.commit()
     form = CommentForm()

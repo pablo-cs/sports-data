@@ -5,7 +5,7 @@
   {% else %}
   <h1>Player Information </h1>
   <form action="{{ url_for('add_fav') }}"" method="POST">
-      <input type="hidden" name="added_user" value="{{ streamer }}">
+      <input type="hidden" name="added_player" value="{{ player['name'] }}">
       <button type="submit">Add to favorites</button>
   </form>
   <table>
@@ -139,8 +139,10 @@
     <button type="submit">Submit Comment</button>
   </form>
   {% for comment in comments %}
+  <div class = "comment-view">
     <h4>{{ comment.comment }}</h4>
-    <p>{{ comment.username }}</p>
+    <p> - {{ comment.user_name }}</p>
+  </div>
   {% endfor %}
 </div>
   {% endif %}
