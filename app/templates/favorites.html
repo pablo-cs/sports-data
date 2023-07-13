@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .view-profile {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1> Favorite Players List</h1>
+  <table>
+    <tr>
+      <th>Player Name</th>
+      <th>Player Team</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <th id="name">{{ player['name'] }}</th>
+      <th> id="proyears">{{ player['team']['full_name']}} </th>
+      <td><button class="view-profile" onclick="viewProfile(265)">View Profile</button></td>
+    
+    
+  </table>
+
+  <script>
+    function viewProfile(playerId) {
+      window.location.href = '/playerProfile?id=' + playerId;
+    }
+  </script>
+</body>
+</html>
