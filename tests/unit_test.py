@@ -1,8 +1,23 @@
+from app.app import app,db #imports flask app object
 from app.access_api import get_player_data
-import unittest
+import unittest,sys
+sys.path.append('../project2') # imports python file from parent directory
+from app.models import Favplayer
 
 
 class SportsAPITest(unittest.TestCase):
+    # executed prior to each test
+    def setUp(self):
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        db.create_all()
+        self.app = app.test_client()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+    
+    #for seaching player data
     def test_get_player_data(self):
         # Valid data
         lebron_stats = {
@@ -33,8 +48,35 @@ class SportsAPITest(unittest.TestCase):
         # No current stats
         steve_kerr = {}
 
-        self.assertEquals(get_player_data('Lebron James')['stats'], lebron_stats)
-        self.assertEquals(get_player_data('Steve kerr')['stats'], None)
+        self.assertEqual(get_player_data('Lebron James')['stats'], lebron_stats)
+        self.assertEqual(get_player_data('Steve kerr')['stats'], None)
+
+    #loading main page
+    def test_main_page(self):
+        response = self.app.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+    
+    #loading favorites page
+    def test_fav_page(self):
+        response = self.app.get('/view_fav', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_addfavs_db(self):
+        #adds a user to database
+        response = self.app.post('/add', player={'player_id': '237',
+                                    'player_name':'Lebron James',
+                                    'team_name': 'Los Angeles Laker'})
+        self.assertEqual(response.status_code, 302)  # Check that the response is a redirect
+    
+        #Query the database to check if the user was added
+        player = Favplayer.query.filter_by(player_name='Lebron James').first()
+        self.assertIsNotNone(player)  # Check that the player exists in the database
+
+    
+    #def test_comments_database(self):
+
+    #def test_comments_limits(self):
 
 if __name__ == '__main__':
     unittest.main()
