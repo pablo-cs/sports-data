@@ -8,14 +8,17 @@
 </head>
 
 <body>
-    <form action="{{ url_for('search') }}"" method="POST">
+    <form action="{{ url_for('search') }}" method="POST">
         <input type="text" name="search" placeholder="Search..." required>
         <button type="submit">Search</button>
     </form>
-    
-    <form action="{{ url_for('view_fav') }}" method="POST">
-            <button type="submit">View Favorites</button>
+    <form action="{{ url_for('home') }}">
+        <button type="submit">Home</button>
     </form>
+    <form action="{{ url_for('view_fav') }}" method="POST">
+        <button type="submit">View Favorites</button>
+    </form>
+    
     {% block content %}{% endblock %}
 
 </body>

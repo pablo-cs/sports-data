@@ -1,3 +1,5 @@
+import sys, os
+sys.path.append('/path/to/')
 from app.access_api import get_player_data
 import unittest
 
@@ -33,8 +35,8 @@ class SportsAPITest(unittest.TestCase):
         # No current stats
         steve_kerr = {}
 
-        self.assertEquals(get_player_data('Lebron James')['stats'], lebron_stats)
-        self.assertEquals(get_player_data('Steve kerr')['stats'], None)
+        self.assertEqual(get_player_data('Lebron James')['stats'], lebron_stats)
+        self.assertEqual(get_player_data('Steve kerr')['stats'], None)
 
 if __name__ == '__main__':
     unittest.main()

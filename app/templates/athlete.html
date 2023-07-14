@@ -1,26 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
   {% if player == None %}
-        <h2>Player Not Found</h2>
+    <h2>Player Not Found</h2>
   {% else %}
-  <h1>Player Information </h1>
-  {% if not in_db %}
-    <form action="{{ url_for('add_fav') }}"" method="POST">
-        <input type="hidden" name="added_player" value="{{ player['name'] }}">
-        <button type="submit">Add to favorites</button>
-    </form>
-  {% else %}
-    <form action="{{ url_for('remove') }}"" method="POST">
-        <input type="hidden" name="removed_player" value="{{ player['id'] }}">
-        <button type="submit">Remove from favorites</button>
-    </form>
-  {% endif %}
-    {% if player['image_url'] %}
-    <img class="player-image" src="{{ player['image_url'] }}" alt="Player Image">
-  {% else %}
-    <p>No player image available.</p>
-  {% endif %}
-  <table>
+    <div class="player-info">
+      <div class="player-image-container">
+        {% if player['image_url'] %}
+          <img class="player-image" src="{{ player['image_url'] }}" alt="Player Image">
+        {% else %}
+          <p>No player image available.</p>
+        {% endif %}
+      </div>
+      <div class="player-info-content">
+        <h1>Player Information</h1>
+        {% if not in_db %}
+          <form action="{{ url_for('add_fav') }}" method="POST">
+            <input type="hidden" name="added_player" value="{{ player['name'] }}">
+            <button type="submit">Add to favorites</button>
+          </form>
+        {% else %}
+          <form action="{{ url_for('remove') }}" method="POST">
+            <input type="hidden" name="removed_player" value="{{ player['id'] }}">
+            <button type="submit">Remove from favorites</button>
+          </form>
+        {% endif %}
+    <table>
     <tr>
       <th>Name:</th>
       <td id="name">{{ player['name'] }}</td>
@@ -132,6 +136,8 @@
     </tr>
     {% endif %}
   </table>
+  </div>
+  </div>
 
 <div class="comments-container">
   <h2>Comments</h2>
